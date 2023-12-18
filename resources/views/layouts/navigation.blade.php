@@ -6,14 +6,14 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('index') }}">
-                        <h1 class="font-bold text-2xl">Vehiculum<b class="text-4xl">.</b></h1>
+                        <h1 class="font-bold text-2xl">Locareo<b class="text-4xl">.</b></h1>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cars.index')" :active="request()->routeIs('/', 'cars*')">
-                        Auto's
+                    <x-nav-link :href="route('houses.index')" :active="request()->routeIs('/', 'houses*')">
+                        Aanbod
                     </x-nav-link>
                     @if ((Auth::user()->is_admin ?? 0) == 1)
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard*')">
@@ -44,8 +44,8 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('user.cars')">
-                                Mijn auto's
+                            <x-dropdown-link :href="route('user.houses')">
+                                Mijn huizen
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -86,8 +86,8 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <x-responsive-nav-link :href="route('user.cars')" :active="request()->routeIs('user.cars.*')">
-            Mijn auto's
+        <x-responsive-nav-link :href="route('user.houses')" :active="request()->routeIs('user.houses.*')">
+            Mijn huizen
         </x-responsive-nav-link>
         @if ((Auth::user()->is_admin ?? 0) == 1)
             <div class="pt-2 pb-3 space-y-1">
@@ -105,8 +105,8 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('user.cars')">
-                    Mijn auto's
+                <x-responsive-nav-link :href="route('user.houses')">
+                    Mijn huizen
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
