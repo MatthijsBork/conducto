@@ -16,14 +16,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach ($houses as $house)
                     <div class="bg-white rounded-lg shadow-md">
-                        <img src="{{ $house->image }}" class="w-full h-48 object-cover rounded-t-lg">
+                        <a href="{{ route('houses.show', compact('house')) }}">
+                            <img src="{{ asset('images/houses/house-placeholder.png') }}"
+                                class="w-full h-48 object-cover rounded-t-lg">
+                        </a>
                         <div class="p-4">
                             <h2 class="text-lg font-bold"><a
                                     href="{{ route('houses.show', compact('house')) }}">{{ $house->address . ', ' . $house->city }}</a>
                             </h2>
                             <h2 class="text-md font-bold">{{ $house->postal_code }}</h2>
-                            <p class="text-blue-500">{{ $house->rent . '/maand' }}</p>
+                            <p class="text-gray-500">€{{ $house->rent . '/maand' }}</p>
                             <p class="text-gray-500">{{ $house->rooms . ' kamers' }}</p>
+                            <x-primary-link
+                                href="{{ route('houses.show', compact('house')) }}">Bekijken</x-primary-link>
                         </div>
                     </div>
                 @endforeach

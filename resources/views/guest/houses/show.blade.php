@@ -2,9 +2,13 @@
     @csrf
 
     <div class="p-2">
-        <div class="flex md:flex-row w-full flex-col-reverse justify-between">
-            <div class="flex md:flex-row flex-col w-full justify-between">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+        <div class="flex md:flex-row w-full flex-col-reverse">
+            <div class="flex md:flex-row flex-col w-full">
+                <div class="md:w-1/2">
+                    <x-img-slider>
+
+                    </x-img-slider>
                     {{-- @foreach ($house->images as $index => $houseImage)
                         <div class="relative group cursor-pointer">
                             <img src="{{ asset('images/houses/' . $house->id . '/' . $houseImage->img) }}"
@@ -49,28 +53,6 @@
                 <p>{{ $house->address }}</p>
                 <p>{{ $house->city }}</p>
                 <p>€{{ $house->rent }}</p>
-            </div>
-        </div>
-        <hr class="my-3">
-
-        <h2 class="text-lg font-semibold mb-2">Specificaties</h2>
-        <div class="flex flex-row gap-5">
-            <div class="mb-4">
-                @if (isset($house->properties[0]))
-
-                    @foreach ($house->properties as $property)
-                        <div class="flex flex-row gap-5">
-                            <div class="flex flex-col">
-                                <b>{{ $property->property->name }}:</b>
-                            </div>
-                            <div class="flex flex-col">
-                                <p>{{ $property->value }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    Er zijn nog geen specificaties ingevuld
-                @endif
             </div>
         </div>
     </div>
