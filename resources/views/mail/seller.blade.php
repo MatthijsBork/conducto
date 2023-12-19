@@ -32,13 +32,13 @@
 
 <body class="p-4 bg-gray-100">
     <div class="py-4 text-left">
-        <h1 class="text-3xl font-bold">Vehiculum.</h1>
+        <h1 class="text-3xl font-bold">Locareo.</h1>
     </div>
     <div class="flex-row">
         <div class="xl:flex-row">
             <div class="container p-6 mx-auto mt-4 bg-white rounded-lg shadow-md">
-                <h2 class="mb-4 text-2xl font-semibold">Reactie op uw auto</h2>
-                <p class="mb-4">Iemand heeft gereageerd op uw auto</p>
+                <h2 class="mb-4 text-2xl font-semibold">Reactie op uw woning</h2>
+                <p class="mb-4">Iemand heeft gereageerd op uw woning</p>
                 <p class="mb-2"><b>Reageerder: </b>{{ $data->name }}</p>
                 <p class="mb-4"><b>Reageerder E-mail: </b>{{ $data->email }}</p>
 
@@ -50,14 +50,12 @@
                 </div>
                 <div class="flex flex-row mt-5">
                     <div class="my-1 mr-2">
-                        <h1 class="text-lg font-bold">Auto</h1>
+                        <h1 class="text-lg font-bold">Woning</h1>
                         <p>
-                        <p>Titel: {{ $car->title }}</p>
-                        <p>Kilometerstand: {{ $car->mileage }}</p>
-                        <p>Prijs: {{ $car->price }}</p>
-                        <p>Laatste APK:
-                            {{ date('j F Y', strtotime($car->mot)) }}
-                        </p>
+                        <p>Adres: {{ $house->address }}</p>
+                        <p>Stad: {{ $house->city }}</p>
+                        <p>Huur: {{ $house->rent }}</p>
+
                         </p>
                     </div>
                 </div>
@@ -65,7 +63,7 @@
                     <div class="my-1 mr-2">
                         <h1 class="text-lg font-bold">Beschrijving</h1>
                         <p>
-                            {!! $car->description !!}
+                            {!! $house->description !!}
                         </p>
                     </div>
                 </div>

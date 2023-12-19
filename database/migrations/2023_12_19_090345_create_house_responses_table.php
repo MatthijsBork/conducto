@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('house_responses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('house_id')->constrained('houses')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('telephone');
-            $table->string('response');
-            $table->tinyInteger('status');
+            $table->string('message');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

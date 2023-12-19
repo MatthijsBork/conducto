@@ -33,7 +33,7 @@
                     <tr class="border-b even:bg-gray-50">
                         <td class="px-4 py-3">
                             <a class="hover:underline"
-                                href="{{ route('user.houses.show', compact('house')) }}">{{ $house->address }}</a>
+                                href="{{ route('houses.show', compact('house')) }}">{{ $house->address }}</a>
                         </td>
                         <td class="px-4 py-3">
                             <p>{{ $house->city }}</p>
@@ -42,7 +42,7 @@
                             <p>€{{ $house->rent }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
-                            <a title="Bekijken" href="{{ route('user.houses.show', compact('house')) }}"
+                            <a title="Bekijken" href="{{ route('houses.show', compact('house')) }}"
                                 class="text-blue-700 hover:underline">
                                 <x-eye-icon></x-eye-icon>
                             </a>

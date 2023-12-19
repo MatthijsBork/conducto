@@ -35,7 +35,7 @@ class ResponderMail extends Mailable
         return new Envelope(
             to: $this->data->email,
             from: new Address('noreply@locareo.test', 'Woning'),
-            subject: $this->house->title,
+            subject: $this->house->address,
         );
     }
 
@@ -46,7 +46,7 @@ class ResponderMail extends Mailable
     {
         return new Content(
             view: 'mail.responder',
-            with: ['house' => $this->house]
+            with: ['house' => $this->house, 'data' => $this->data]
         );
     }
 

@@ -2,13 +2,10 @@
     <h2 class="mb-4 text-lg font-semibold">Dashboard menu</h2>
     <ul>
         <li class="mb-2">
-            <x-button-link href="{{ route('dashboard.cars') }}" :active="request()->routeIs('dashboard.cars*')">Auto's</x-button-link>
+            <x-button-link href="{{ route('dashboard.houses') }}" :active="request()->routeIs('dashboard.houses*')">Woningen</x-button-link>
         </li>
         <li class="mb-2">
-            <x-button-link href="{{ route('dashboard.properties') }}" :active="request()->routeIs('dashboard.properties*')">Eigenschappen</x-button-link>
-        </li>
-        <li class="mb-2">
-            <x-button-link href="{{ route('dashboard.brands') }}" :active="request()->routeIs('dashboard.brands*')">Merken</x-button-link>
+            <x-button-link href="{{ route('dashboard.responses') }}" :active="request()->routeIs('dashboard.responses*')">Woning reacties</x-button-link>
         </li>
         <li class="mb-2">
             <x-button-link href="{{ route('dashboard.users') }}" :active="request()->routeIs('dashboard.users*')">Gebruikers</x-button-link>

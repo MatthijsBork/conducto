@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\House;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -48,8 +49,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function cars()
+    public function houses()
     {
-        return $this->hasMany(Car::class);
+        return $this->hasMany(House::class);
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(HouseResponse::class);
     }
 }

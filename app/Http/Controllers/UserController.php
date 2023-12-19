@@ -20,12 +20,12 @@ class UserController extends Controller
 {
     public function create()
     {
-        return view('users.create');
+        return view('dashboard.users.create');
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     public function store(UserStoreRequest $request): RedirectResponse
@@ -71,7 +71,7 @@ class UserController extends Controller
     {
         $query = $request->input('query');
         $users = User::where('name', 'like', "%$query%")->orderBy('name', 'asc')->paginate(10);
-        return view('users.dashboard', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     public function delete(User $user)

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('index') }}">
-                        <h1 class="font-bold text-2xl">Locareo<b class="text-4xl">.</b></h1>
+                        <h1 class="font-bold text-2xl">Conducto<b class="text-4xl">.</b></h1>
                     </a>
                 </div>
 

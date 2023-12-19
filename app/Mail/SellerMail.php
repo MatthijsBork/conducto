@@ -35,7 +35,7 @@ class SellerMail extends Mailable
         return new Envelope(
             to: $this->house->user->email,
             from: new Address('noreply@locareo.test', 'Woning'),
-            subject: $this->house->title,
+            subject: $this->house->address,
         );
     }
 

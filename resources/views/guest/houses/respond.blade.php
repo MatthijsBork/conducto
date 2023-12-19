@@ -6,7 +6,7 @@
         <x-filter-menu></x-filter-menu>
     </x-slot>
 
-    <form method="POST" action="{{ route('houses.respond.post', compact('house')) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('houses.respond.store', compact('house')) }}" enctype="multipart/form-data">
         @csrf
 
         <div class="tab-content">
@@ -23,6 +23,14 @@
                 <input type="text" id="email" name="email" value="{{ old('email') }}"
                     class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
                 @error('email')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-4">
+                <x-input-label for="telephone">Uw telefoonnummer</x-input-label>
+                <input type="text" id="telephone" name="telephone" value="{{ old('telephone') }}"
+                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
+                @error('telephone')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
             </div>

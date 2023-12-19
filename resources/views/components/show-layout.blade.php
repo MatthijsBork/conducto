@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Locareo</title>
+    <title>Conducto.</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -40,7 +40,8 @@
                         <div class="w-full">
                             <div class="mb-2 flex items-center justify-between">
                                 <div class="flex-shrink-0">
-                                    <a class="text-blue-500 hover:underline" onclick="javascript.history.back()" href="">< Terug</a>
+                                    <a class="text-blue-500 hover:underline" href="{{ url()->previous() }}">
+                                        < Terug</a>
                                 </div>
                             </div>
                             <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">

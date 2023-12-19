@@ -1,6 +1,5 @@
 <x-layout>
 
-
     <x-slot name="titleSlot">Aanbod</x-slot>
 
     <x-slot name="searchSlot">
@@ -14,10 +13,21 @@
                 <p class="mb-4">Er zijn geen woningen gevonden</p>
             </div>
         @else
-            @foreach ($houses as $house)
-                test
-            @endforeach
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                @foreach ($houses as $house)
+                    <div class="bg-white rounded-lg shadow-md">
+                        <img src="{{ $house->image }}" class="w-full h-48 object-cover rounded-t-lg">
+                        <div class="p-4">
+                            <h2 class="text-lg font-bold"><a
+                                    href="{{ route('houses.show', compact('house')) }}">{{ $house->address . ', ' . $house->city }}</a>
+                            </h2>
+                            <h2 class="text-md font-bold">{{ $house->postal_code }}</h2>
+                            <p class="text-blue-500">{{ $house->rent . '/maand' }}</p>
+                            <p class="text-gray-500">{{ $house->rooms . ' kamers' }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @endif
         <div class="my-4">
             {{ $houses->links() }}

@@ -15,7 +15,7 @@ class HousePolicy
         //
     }
 
-    public function hasCar(User $user, House $house)
+    public function hasHouse(User $user, House $house)
     {
         return $house->user->id == $user->id;
     }

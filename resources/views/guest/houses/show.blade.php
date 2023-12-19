@@ -1,11 +1,6 @@
 <x-show-layout>
     @csrf
 
-    <x-slot name="titleSlot">
-        <a class="text-red-500 hover:underline mr-4" href="javascript:history.back()">
-            < Terug </a>
-    </x-slot>
-
     <div class="p-2">
         <div class="flex md:flex-row w-full flex-col-reverse justify-between">
             <div class="flex md:flex-row flex-col w-full justify-between">
@@ -31,7 +26,7 @@
                             <hr class="my-3">
                             <p>{{ $house->description }}</p>
                             <hr class="my-3">
-                            <h2 class="text-xl font-semibold">€{{ $house->rent }} / Maand</h2>
+                            <h2 class="text-xl font-semibold">€{{ $house->rent }} / maand</h2>
                             <p class="my-4">
                                 <x-primary-link
                                     href="{{ route('houses.respond', compact('house')) }}">Reageren</x-primary-link>

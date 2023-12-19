@@ -25,8 +25,9 @@ Route::get('/', [HouseController::class, 'index'])->name('index');
 Route::prefix('houses')->name('houses')->group(function () {
     Route::get('', [HouseController::class, 'index'])->name('.index');
     Route::prefix('{house}')->group(function () {
+        Route::get('show', [HouseController::class, 'show'])->name('.show');
         Route::get('respond', [HouseController::class, 'respond'])->name('.respond');
-        Route::post('respond', [HouseController::class, 'respond'])->name('.respond.post');
+        Route::post('respond', [HouseController::class, 'postResponse'])->name('.respond.store');
     });
 });
 
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function () {
             Route::prefix('{house}')->group(function () {
                 Route::get('edit', [UserHouseController::class, 'edit'])->name('.edit');
                 Route::post('update', [UserHouseController::class, 'update'])->name('.update');
-                Route::get('show', [UserHouseController::class, 'show'])->name('.show');
                 Route::get('info', [UserHouseController::class, 'info'])->name('.info');
                 Route::get('delete', [UserHouseController::class, 'delete'])->name('.delete');
 
@@ -77,6 +77,24 @@ Route::middleware('auth')->group(function () {
 
         // HOUSES
         Route::prefix('houses')->name('.houses')->group(function () {
+            Route::get('', [HouseController::class, 'dashboard']);
+            Route::get('create', [HouseController::class, 'create'])->name('.create');
+            Route::post('store', [HouseController::class, 'store'])->name('.store');
+            Route::prefix('{house}')->group(function () {
+                Route::get('edit', [HouseController::class, 'edit'])->name('.edit');
+                Route::post('update', [HouseController::class, 'update'])->name('.update');
+                Route::get('info', [HouseController::class, 'info'])->name('.info');
+                Route::get('delete', [HouseController::class, 'delete'])->name('.delete');
+
+                Route::prefix('images')->name('.images')->group(function () {
+                    Route::get('', [UserHouseImageController::class, 'show']);
+                    Route::get('edit', [UserHouseImageController::class, 'show'])->name('.edit');
+                });
+            });
+        });
+
+        // RESPONSES
+        Route::prefix('responses')->name('.responses')->group(function () {
             Route::get('', [HouseController::class, 'dashboard']);
         });
 

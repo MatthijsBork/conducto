@@ -43,6 +43,8 @@ class UserHouseController extends Controller
 
     public function update(HouseStoreRequest $request, House $house)
     {
+        $this->authorize('hasHouse', [House::class, $house]);
+
         $house->address = $request->address;
         $house->postal_code = $request->postal_code;
         $house->city = $request->city;
@@ -57,11 +59,15 @@ class UserHouseController extends Controller
 
     public function edit(House $house)
     {
+        $this->authorize('hasHouse', [House::class, $house]);
+
         return view('user.houses.edit', compact('house'));
     }
 
-    public function editImages()
+    public function editImages(House $house)
     {
+        $this->authorize('hasHouse', [House::class, $house]);
+
         return view('user.houses.editImages');
     }
 
@@ -72,6 +78,8 @@ class UserHouseController extends Controller
 
     public function info(House $house)
     {
+        $this->authorize('hasHouse', [House::class, $house]);
+
         return view('user.houses.info', compact('house'));
     }
 }
