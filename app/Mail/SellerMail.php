@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Car;
+use App\Models\House;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -15,15 +15,15 @@ class SellerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Car $car;
+    private House $house;
     private $data;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Car $car, $data)
+    public function __construct(House $house, $data)
     {
-        $this->car = $car;
+        $this->house = $house;
         $this->data = $data;
     }
 
@@ -33,9 +33,9 @@ class SellerMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: $this->car->user->email,
-            from: new Address('noreply@vehiculum.test', 'Auto'),
-            subject: $this->car->title,
+            to: $this->house->user->email,
+            from: new Address('noreply@locareo.test', 'Woning'),
+            subject: $this->house->title,
         );
     }
 
@@ -46,7 +46,7 @@ class SellerMail extends Mailable
     {
         return new Content(
             view: 'mail.seller',
-            with: ['car' => $this->car, 'data' => $this->data]
+            with: ['house' => $this->house, 'data' => $this->data]
         );
     }
 

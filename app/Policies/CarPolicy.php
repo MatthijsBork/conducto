@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Car;
 use App\Models\User;
+use App\Models\House;
 
-class CarPolicy
+class HousePolicy
 {
     /**
      * Create a new policy instance.
@@ -15,8 +15,8 @@ class CarPolicy
         //
     }
 
-    public function hasCar(User $user, Car $car)
+    public function hasCar(User $user, House $house)
     {
-        return $car->user->id == $user->id;
+        return $house->user->id == $user->id;
     }
 }

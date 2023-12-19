@@ -45,7 +45,10 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('user.houses')">
-                                Mijn huizen
+                                Mijn woningen
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('user.responses')">
+                                Mijn reacties
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -87,7 +90,10 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <x-responsive-nav-link :href="route('user.houses')" :active="request()->routeIs('user.houses.*')">
-            Mijn huizen
+            Mijn woningen
+        </x-responsive-nav-link>
+        <x-responsive-nav-link :href="route('user.responses')" :active="request()->routeIs('user.responses.*')">
+            Mijn reacties
         </x-responsive-nav-link>
         @if ((Auth::user()->is_admin ?? 0) == 1)
             <div class="pt-2 pb-3 space-y-1">
@@ -106,7 +112,10 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('user.houses')">
-                    Mijn huizen
+                    Mijn woningen
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user.responses')">
+                    Mijn reacties
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

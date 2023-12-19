@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('houses', function (Blueprint $table) {
+        Schema::create('house_responses', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->string('postal_code');
-            $table->string('city');
-            $table->string('rooms');
-            $table->longText('description');
-            $table->string('rent');
+            $table->foreignId('house_id')->constrained('houses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('email');
+            $table->string('telephone');
+            $table->string('response');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('houses');
+        Schema::dropIfExists('house_responses');
     }
 };

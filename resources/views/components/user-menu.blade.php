@@ -2,7 +2,10 @@
     <h2 class="mb-4 text-lg font-semibold">Menu</h2>
     <ul>
         <li class="mb-2">
-            <x-button-link href="{{ route('user.cars') }}" :active="request()->routeIs('user.cars*')">Mijn auto's</x-button-link>
+            <x-button-link href="{{ route('user.houses') }}" :active="request()->routeIs('user.houses*')">Mijn woningen</x-button-link>
+        </li>
+        <li class="mb-2">
+            <x-button-link href="{{ route('user.responses') }}" :active="request()->routeIs('user.responses*')">Mijn reacties</x-button-link>
         </li>
     </ul>
 </div>

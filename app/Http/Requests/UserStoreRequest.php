@@ -58,7 +58,7 @@ class UserStoreRequest extends FormRequest
             'image.max' => 'Foto mag maximaal 2MB zijn.',
             'image.mimes' => 'Foto moet JPEG, PNG, JPG, of GIF formaat zijn.',
 
-            'email.unique' => 'Er bestaat al een bedrijf met deze E-mail.',
+            'email.unique' => 'Er bestaat al een account met deze E-mail.',
         ];
     }
 }

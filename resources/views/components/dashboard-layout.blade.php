@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Vehiculum - Dashboard</title>
+    <title>Locareo - Dashboard</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -37,7 +37,11 @@
                 @endif
                 <div class="justify-between md:flex">
                     <div class="w-full md:w-1/6 lg:w-1/5">
-                        <x-dashboard-menu></x-dashboard-menu>
+                        @if (isset($menuSlot))
+                            {{ $menuSlot }}
+                        @else
+                            <x-dashboard-menu></x-dashboard-menu>
+                        @endif
                     </div>
                     <div class="w-full md:w-3/4">
                         <div class="w-full">

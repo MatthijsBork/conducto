@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Vehiculum</title>
+    <title>Locareo</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -36,39 +36,65 @@
                     </div>
                 @endif
                 <div class="justify-between md:flex">
-                    <div class="w-full md:w-1/6 lg:w-1/5">
-                        @if (isset($menuSlot))
+                    @if (isset($menuSlot))
+                        <div class="w-full md:w-1/6 lg:w-1/5">
                             {{ $menuSlot }}
-                        @else
-                            <x-filter-menu></x-filter-menu>
-                        @endif
-                    </div>
-                    <div class="w-full md:w-3/4">
-                        <div class="w-full">
-                            <div class="mb-2 flex items-center gap-5 justify-between">
-                                <div class="flex-shrink-0">
-                                    <h1 class="text-2xl font-semibold">{{ $titleSlot }}</h1>
-                                </div>
-                                @if (isset($searchSlot))
-                                    <div class="flex-grow">
-                                        {{ $searchSlot }}
-                                    </div>
-                                @endif
-                                @if (isset($buttonSlot))
+                        </div>
+                        <div class="w-full md:w-3/4">
+                            <div class="w-full">
+                                <div class="mb-2 flex items-center gap-5 justify-between">
                                     <div class="flex-shrink-0">
-                                        {{ $buttonSlot }}
+                                        <h1 class="text-2xl font-semibold">{{ $titleSlot }}</h1>
+                                    </div>
+                                    @if (isset($searchSlot))
+                                        <div class="flex-grow">
+                                            {{ $searchSlot }}
+                                        </div>
+                                    @endif
+                                    @if (isset($buttonSlot))
+                                        <div class="flex-shrink-0">
+                                            {{ $buttonSlot }}
+                                        </div>
+                                    @endif
+                                </div>
+                                @if (isset($noBackgroundSlot))
+                                    {{ $noBackgroundSlot }}
+                                @else
+                                    <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
+                                        {{ $slot }}
                                     </div>
                                 @endif
                             </div>
-                            @if (isset($noBackgroundSlot))
-                                {{ $noBackgroundSlot }}
-                            @else
-                                <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
-                                    {{ $slot }}
-                                </div>
-                            @endif
                         </div>
-                    </div>
+                    @else
+                        <div class="w-full">
+                            <div class="w-full">
+                                <div class="mb-2 flex items-center gap-5 justify-between">
+                                    <div class="flex-shrink-0">
+                                        <h1 class="text-2xl font-semibold">{{ $titleSlot }}</h1>
+                                    </div>
+                                    @if (isset($searchSlot))
+                                        <div class="flex-grow">
+                                            {{ $searchSlot }}
+                                        </div>
+                                    @endif
+                                    @if (isset($buttonSlot))
+                                        <div class="flex-shrink-0">
+                                            {{ $buttonSlot }}
+                                        </div>
+                                    @endif
+                                </div>
+                                @if (isset($noBackgroundSlot))
+                                    {{ $noBackgroundSlot }}
+                                @else
+                                    <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
+                                        {{ $slot }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </main>

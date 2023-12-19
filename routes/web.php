@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserHouseController;
+use App\Http\Controllers\UserResponseController;
+use App\Http\Controllers\UserHouseImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,16 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', [CarController::class, 'index'])->name('index');
+Route::get('/', [HouseController::class, 'index'])->name('index');
+
+// HOUSES
+Route::prefix('houses')->name('houses')->group(function () {
+    Route::get('', [HouseController::class, 'index'])->name('.index');
+    Route::prefix('{house}')->group(function () {
+        Route::get('respond', [HouseController::class, 'respond'])->name('.respond');
+        Route::post('respond', [HouseController::class, 'respond'])->name('.respond.post');
+    });
+});
 
 
 // LOGGED IN USERS
@@ -26,15 +37,36 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+
     // USER
     Route::prefix('user')->name('user')->group(function () {
 
         // USER/HOUSES
         Route::prefix('houses')->name('.houses')->group(function () {
-            Route::get('', [HouseController::class, 'index']);
+            Route::get('', [UserHouseController::class, 'index']);
+            Route::get('create', [UserHouseController::class, 'create'])->name('.create');
+            Route::post('store', [UserHouseController::class, 'store'])->name('.store');
+            Route::prefix('{house}')->group(function () {
+                Route::get('edit', [UserHouseController::class, 'edit'])->name('.edit');
+                Route::post('update', [UserHouseController::class, 'update'])->name('.update');
+                Route::get('show', [UserHouseController::class, 'show'])->name('.show');
+                Route::get('info', [UserHouseController::class, 'info'])->name('.info');
+                Route::get('delete', [UserHouseController::class, 'delete'])->name('.delete');
 
+                Route::prefix('images')->name('.images')->group(function () {
+                    Route::get('', [UserHouseImageController::class, 'show']);
+                    Route::get('edit', [UserHouseImageController::class, 'show'])->name('.edit');
+                });
+            });
         });
 
+        // USER/RESPONSES
+        Route::prefix('responses')->name('.responses')->group(function () {
+            Route::get('', [UserResponseController::class, 'index']);
+            Route::get('create', [UserResponseController::class, 'create'])->name('.create');
+            Route::post('store', [UserResponseController::class, 'store'])->name('.store');
+        });
     });
 
     // ADMIN
@@ -43,7 +75,10 @@ Route::middleware('auth')->group(function () {
             return view('dashboard');
         });
 
-
+        // HOUSES
+        Route::prefix('houses')->name('.houses')->group(function () {
+            Route::get('', [HouseController::class, 'dashboard']);
+        });
 
         // USERS
         Route::prefix('users')->name('.users')->group(function () {
@@ -58,7 +93,6 @@ Route::middleware('auth')->group(function () {
                 Route::get('delete', [UserController::class, 'delete'])->name('.delete');
             });
         });
-        // Route::get('cars', [CarController::class, 'show'])->name('.show');
     })->middleware('admin');
 });
 
