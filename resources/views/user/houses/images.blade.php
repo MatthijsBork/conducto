@@ -24,10 +24,9 @@
                         <img src="{{ asset('images/houses/' . $house->id . '/' . $image->img) }}"
                             alt="Image {{ $index }}"
                             class="w-full h-40 object-cover rounded-md transition duration-300 transform hover:scale-105">
-                        <div
-                            class="hidden group-hover:flex fixed w-1/2 h-1/2 bg-black bg-opacity-75 items-center justify-center">
+                        <div class="hidden group-hover:flex fixed">
                             <img src="{{ asset('images/houses/' . $house->id . '/' . $image->img) }}"
-                                alt="Image {{ $index }}" class="max-w-full max-h-full">
+                                alt="Image {{ $index }}" class="rounded-xl shadow max-w-full max-h-full">
                         </div>
                     </div>
                 @endforeach
