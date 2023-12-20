@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Models\House;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\HouseStoreRequest;
 
 class UserHouseController extends Controller
@@ -81,5 +82,13 @@ class UserHouseController extends Controller
         $this->authorize('hasHouse', [House::class, $house]);
 
         return view('user.houses.info', compact('house'));
+    }
+
+    public function delete(House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+        Storage::deleteDirectory('houses/' . $house->id);
+        $house->delete();
+        return redirect()->route('user.houses.index')->with('success', 'Huis verwijderd!');
     }
 }

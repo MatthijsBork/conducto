@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
-use Illuminate\Http\Request;
-use App\Http\Requests\HouseImageStoreRequest;
 use App\Models\HouseImage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\HouseImageStoreRequest;
 
 class UserHouseImageController extends Controller
 {
@@ -18,7 +19,7 @@ class UserHouseImageController extends Controller
     public function edit(Request $request, House $house)
     {
         $houseImages = $house->images;
-        return view('houses.user.editImages', compact('house', 'houseImages'));
+        return view('user.houses.editImages', compact('house', 'houseImages'));
     }
 
     public function store(HouseImageStoreRequest $request, House $house)
@@ -35,5 +36,12 @@ class UserHouseImageController extends Controller
         }
 
         return redirect()->back()->with('success', "Foto's geüpload!");
+    }
+
+    public function delete(House $house, HouseImage $image)
+    {
+        $image->delete();
+        Storage::delete('houses/' . $house->id . '/' . $image->img);
+        return redirect()->back()->with('success', 'Foto verwijderd!');
     }
 }
