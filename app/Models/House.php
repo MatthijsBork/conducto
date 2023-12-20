@@ -18,4 +18,9 @@ class House extends Model
     {
         return $this->hasMany(HouseImage::class);
     }
+
+    public function responses()
+    {
+        return $this->hasMany(HouseResponse::class);
+    }
 }

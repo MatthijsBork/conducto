@@ -1,6 +1,6 @@
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<div x-data="imageSlider" class="relative mx-auto overflow-hidden rounded-md bg-gray-100">
+<div x-data="imageSlider" class="relative mx-auto w-full overflow-hidden rounded-md bg-gray-100">
     <div class="absolute right-5 top-5 z-10 rounded-full bg-gray-600 px-2 text-center text-sm text-white">
         <span x-text="currentIndex"></span>/<span x-text="images.length"></span>
     </div>
@@ -32,9 +32,9 @@
         Alpine.data("imageSlider", () => ({
             currentIndex: 1,
             images: [
-                "{{ asset('images/houses/house-placeholder.png') }}",
-                "{{ asset('images/houses/house-placeholder.png') }}",
-                "{{ asset('images/houses/house-placeholder.png') }}",
+                @foreach ($house->images as $image)
+                    "{{ asset('/images/houses/' . $house->id . '/' . $image->img) }}",
+                @endforeach
             ],
             previous() {
                 if (this.currentIndex > 1) {

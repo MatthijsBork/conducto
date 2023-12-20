@@ -20,6 +20,7 @@
                 <tr>
                     <th class="px-4 py-3">Adres</th>
                     <th class="px-4 py-3">Stad</th>
+                    <th class="px-4 py-3">Naam</th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,18 +31,14 @@
                             <a class="hover:underline">{{ $response->house->address }}</a>
                         </td>
                         <td class="px-4 py-3">
+                            <p>{{ $response->house->city }}</p>
+                        </td>
+                        <td class="px-4 py-3">
                             <p>{{ $response->name }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
                             <a title="Bekijken" class="text-blue-700 hover:underline">
                                 <x-eye-icon></x-eye-icon>
-                            </a>
-                            <a title="Bewerken" class="text-blue-700 hover:underline">
-                                <x-edit-icon></x-edit-icon>
-                            </a>
-                            <a title="Verwijderen" class="text-red-500 hover:underline"
-                                onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?');">
-                                <x-trash-icon></x-trash-icon>
                             </a>
                         </td>
                     </tr>

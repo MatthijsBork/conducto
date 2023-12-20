@@ -48,12 +48,14 @@ Route::middleware('auth')->group(function () {
             Route::get('', [UserHouseController::class, 'index']);
             Route::get('create', [UserHouseController::class, 'create'])->name('.create');
             Route::post('store', [UserHouseController::class, 'store'])->name('.store');
+
             // HOUSE
             Route::prefix('{house}')->group(function () {
                 Route::get('edit', [UserHouseController::class, 'edit'])->name('.edit');
                 Route::post('update', [UserHouseController::class, 'update'])->name('.update');
                 Route::get('info', [UserHouseController::class, 'info'])->name('.info');
                 Route::get('delete', [UserHouseController::class, 'delete'])->name('.delete');
+
                 // HOUSE IMAGES
                 Route::prefix('images')->name('.images')->group(function () {
                     Route::get('', [UserHouseImageController::class, 'show']);
@@ -61,6 +63,30 @@ Route::middleware('auth')->group(function () {
                     Route::post('store', [UserHouseImageController::class, 'store'])->name('.store');
                     Route::get('{image}/delete', [UserHouseImageController::class, 'delete'])->name('.delete');
                 });
+
+                // RESPONSES
+                Route::prefix('responses')->name('.responses')->group(function () {
+                    Route::get('', [UserResponseController::class, 'houseIndex']);
+                    Route::get('edit', [UserResponseController::class, 'edit'])->name('.edit');
+                    Route::post('store', [UserResponseController::class, 'store'])->name('.store');
+                    Route::get('{response}/delete', [UserResponseController::class, 'delete'])->name('.delete');
+
+                    // RESPONSE
+                    Route::prefix('{house_response}')->group(function () {
+                        Route::get('show', [UserResponseController::class, 'show'])->name('.show');
+                    });
+                });
+            });
+        });
+        Route::prefix('responses')->name('.responses')->group(function () {
+            Route::get('', [UserResponseController::class, 'houseIndex']);
+            Route::get('edit', [UserResponseController::class, 'edit'])->name('.edit');
+            Route::post('store', [UserResponseController::class, 'store'])->name('.store');
+            Route::get('{response}/delete', [UserResponseController::class, 'delete'])->name('.delete');
+
+            // RESPONSE
+            Route::prefix('{response}')->group(function () {
+                Route::get('show', [UserResponseController::class, 'show'])->name('.show');
             });
         });
 

@@ -19,24 +19,30 @@
             <div class="flex flex-col w-full">
                 <div class="flex flex-row justify-between">
                     <p>
-                        <x-input-label>Beschrijving</x-input-label>
-                        {{ $house->description }}
+                        <x-input-label>Postcode</x-input-label>
+                        {{ $house->postal_code }}
+                    </p>
+                    <p>
+                        <x-input-label>Adres</x-input-label>
+                        {{ $house->address . ', ' . $house->city }}
+                    </p>
+                    <p>
+                        <x-input-label>Huur</x-input-label>
+                        {{ $house->rent }}
+                    </p>
+                    <p>
+                        <x-input-label>Kamers</x-input-label>
+                        {{ $house->rooms }}
                     </p>
                 </div>
                 <hr class="my-3">
                 <div class="flex flex-row gap-5">
                     <div class="flex flex-col">
-                        <b>Merk:</b>
-
-                    </div>
-                    <div class="flex flex-col">
-                        <p>{{ $house->address }}</p>
-
+                        <b>Beschrijving:</b>
+                        <p>{{ $house->description }}</p>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </x-layout>

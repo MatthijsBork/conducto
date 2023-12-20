@@ -42,13 +42,17 @@
                             <p>€{{ $house->rent }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
-                            <a title="Bekijken" href="{{ route('houses.show', compact('house')) }}"
-                                class="text-blue-700 hover:underline">
-                                <x-eye-icon></x-eye-icon>
-                            </a>
                             <a title="Bewerken" href="{{ route('user.houses.info', compact('house')) }}"
                                 class="text-blue-700 hover:underline">
                                 <x-edit-icon></x-edit-icon>
+                            </a>
+                            <a title="Foto's" href="{{ route('user.houses.images', compact('house')) }}"
+                                class="text-blue-700 hover:underline">
+                                <x-img-icon></x-img-icon>
+                            </a>
+                            <a title="Reacties" href="{{ route('user.houses.responses', compact('house')) }}"
+                                class="text-blue-700 hover:underline">
+                                <x-list-icon></x-list-icon>
                             </a>
                             <a title="Verwijderen" href="{{ route('user.houses.delete', compact('house')) }}"
                                 class="text-red-500 hover:underline"

@@ -17,7 +17,7 @@
                 @foreach ($houses as $house)
                     <div class="bg-white rounded-lg shadow-md">
                         <a href="{{ route('houses.show', compact('house')) }}">
-                            <img src="{{ asset('images/houses/house-placeholder.png') }}"
+                            <img src="{{ asset('images/houses/' . $house->id . '/' . $house->images->first()->img) }}"
                                 class="w-full h-48 object-cover rounded-t-lg">
                         </a>
                         <div class="p-4">
