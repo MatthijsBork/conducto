@@ -8,16 +8,21 @@ use Illuminate\Http\Request;
 use App\Models\HouseResponse;
 use Illuminate\Support\Facades\Auth;
 
-class UserResponseController extends Controller
+class ResponseController extends Controller
 {
-    public function index(Request $request)
+    public function dashboard(Request $request)
     {
         $query = $request->input('query');
 
-        $responses = HouseResponse::where('user_id', '=', Auth::user()->id)
-            ->where('name', 'like', "%$query%")
-            ->orderBy('created_at')->paginate(10);
-        return view('user.responses.index', compact('responses'));
+        $responses = HouseResponse::where('name', 'like', "%$query%")->orderBy('created_at')->paginate(10);
+        return view('dashboard.responses.index', compact('responses'));
+    }
+
+    public function create()
+    {
+        $houses = House::all();
+
+        return view('dashboard.responses.create', compact('houses'));
     }
 
     public function houseIndex(Request $request, House $house)

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\UserHouseController;
 use App\Http\Controllers\UserResponseController;
 use App\Http\Controllers\UserHouseImageController;
@@ -38,8 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
-
     // USER
     Route::prefix('user')->name('user')->group(function () {
 
@@ -69,24 +68,15 @@ Route::middleware('auth')->group(function () {
                     Route::get('', [UserResponseController::class, 'houseIndex']);
                     Route::get('edit', [UserResponseController::class, 'edit'])->name('.edit');
                     Route::post('store', [UserResponseController::class, 'store'])->name('.store');
-                    Route::get('{response}/delete', [UserResponseController::class, 'delete'])->name('.delete');
+                    Route::get('{house_response}/delete', [UserResponseController::class, 'delete'])->name('.delete');
 
                     // RESPONSE
                     Route::prefix('{house_response}')->group(function () {
-                        Route::get('show', [UserResponseController::class, 'show'])->name('.show');
+                        Route::get('show', [UserResponseController::class, 'responseShow'])->name('.show');
+                        Route::get('accept', [UserResponseController::class, 'accept'])->name('.accept');
+                        Route::get('decline', [UserResponseController::class, 'decline'])->name('.decline');
                     });
                 });
-            });
-        });
-        Route::prefix('responses')->name('.responses')->group(function () {
-            Route::get('', [UserResponseController::class, 'houseIndex']);
-            Route::get('edit', [UserResponseController::class, 'edit'])->name('.edit');
-            Route::post('store', [UserResponseController::class, 'store'])->name('.store');
-            Route::get('{response}/delete', [UserResponseController::class, 'delete'])->name('.delete');
-
-            // RESPONSE
-            Route::prefix('{response}')->group(function () {
-                Route::get('show', [UserResponseController::class, 'show'])->name('.show');
             });
         });
 
@@ -95,6 +85,13 @@ Route::middleware('auth')->group(function () {
             Route::get('', [UserResponseController::class, 'index']);
             Route::get('create', [UserResponseController::class, 'create'])->name('.create');
             Route::post('store', [UserResponseController::class, 'store'])->name('.store');
+
+            // RESPONSE
+            Route::prefix('{house_response}')->group(function () {
+                Route::get('show', [UserResponseController::class, 'show'])->name('.show');
+                Route::get('edit', [UserResponseController::class, 'edit'])->name('.edit');
+                Route::get('delete', [UserResponseController::class, 'delete'])->name('.delete');
+            });
         });
     });
 
@@ -124,7 +121,8 @@ Route::middleware('auth')->group(function () {
 
         // RESPONSES
         Route::prefix('responses')->name('.responses')->group(function () {
-            Route::get('', [HouseController::class, 'dashboard']);
+            Route::get('', [ResponseController::class, 'dashboard']);
+            Route::get('create', [ResponseController::class, 'create'])->name('.create');
         });
 
         // USERS

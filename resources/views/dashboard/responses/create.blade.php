@@ -5,5 +5,5 @@
 
     <x-slot name="titleSlot">Woning toevoegen</x-slot>
 
-    <x-house-form :action="route('user.houses.store')"></x-house-form>
+    <x-respond-form :houses="$houses"></x-respond-form>
 </x-layout>

@@ -40,8 +40,12 @@
                         <div class="w-full">
                             <div class="mb-2 flex items-center justify-between">
                                 <div class="flex-shrink-0">
-                                    <a class="text-blue-500 hover:underline" href="{{ url()->previous() }}">
-                                        < Terug</a>
+                                    @if (isset($titleSlot))
+                                        {{ $titleSlot }}
+                                    @else
+                                        <a class="text-blue-500 hover:underline" href="{{ url()->previous() }}">
+                                            < Terug</a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">

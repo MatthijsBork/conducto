@@ -10,6 +10,8 @@ use App\Models\HouseResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RespondRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\HouseStoreRequest;
 
 class HouseController extends Controller
 {
@@ -33,6 +35,11 @@ class HouseController extends Controller
         return view('dashboard.houses.index', compact('houses'));
     }
 
+    public function create()
+    {
+        return view('dashboard.houses.create');
+    }
+
     public function show(House $house)
     {
         return view('guest.houses.show', compact('house'));
@@ -41,6 +48,66 @@ class HouseController extends Controller
     public function respond(House $house)
     {
         return view('guest.houses.respond', compact('house'));
+    }
+
+    public function store(HouseStoreRequest $request)
+    {
+        $house = new House();
+        $house->address = $request->address;
+        $house->postal_code = $request->postal_code;
+        $house->city = $request->city;
+        $house->rooms = $request->rooms;
+        $house->rent = $request->rent;
+        $house->description = $request->description;
+        $house->user_id = Auth::user()->id;
+        $house->save();
+
+        return redirect()->route('dashboard.houses.show', compact('house'))->with('success', 'Huis opgeslagen');
+    }
+
+    public function update(HouseStoreRequest $request, House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+
+        $house->address = $request->address;
+        $house->postal_code = $request->postal_code;
+        $house->city = $request->city;
+        $house->rooms = $request->rooms;
+        $house->rent = $request->rent;
+        $house->description = $request->description;
+        $house->user_id = Auth::user()->id;
+        $house->save();
+
+        return redirect()->route('dashboard.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
+    }
+
+    public function edit(House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+
+        return view('dashboard.houses.edit', compact('house'));
+    }
+
+    public function editImages(House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+
+        return view('dashboard.houses.editImages');
+    }
+
+    public function info(House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+
+        return view('dashboard.houses.info', compact('house'));
+    }
+
+    public function delete(House $house)
+    {
+        $this->authorize('hasHouse', [House::class, $house]);
+        Storage::deleteDirectory('houses/' . $house->id);
+        $house->delete();
+        return redirect()->route('dashboard.houses.index')->with('success', 'Huis verwijderd!');
     }
 
     public function postResponse(RespondRequest $request, House $house)
