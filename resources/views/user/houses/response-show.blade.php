@@ -10,10 +10,21 @@
             <h1 class="text-xl font-semibold">Reactie op
                 {{ $house_response->house->address . ', ' . $house_response->house->city }}</h1>
             <div>
-                <x-primary-link class="bg-green-600 hover:bg-green-700" href="{{ route('user.houses.responses.accept', compact('house', 'house_response')) }}">Reactie accepteren</x-primary-link>
-                <x-primary-link
-                    class="bg-red-500 hover:bg-red-700 hover:text-white"
-                    href="{{ route('user.houses.responses.decline', compact('house', 'house_response')) }}">Reactie afwijzen</x-primary-link>
+                @if ($house->acceptedResponse() == null)
+                    <x-primary-link class="bg-green-600 hover:bg-green-700"
+                        href="{{ route('user.houses.responses.accept', compact('house', 'house_response')) }}">Reactie
+                        accepteren</x-primary-link>
+                @elseif ($house->acceptedResponse()->id ?? null == $house_response->id)
+                    <x-primary-link class="bg-green-100 hover:bg-green-100 border border-green-500 text-green-500">Al
+                        geaccepteerd</x-primary-link>
+                @else
+                    <x-primary-link class="bg-gray-300 hover:bg-gray-300 border border-gray-500 text-black">Woning is
+                        bezet</x-primary-link>
+                @endif
+                <x-primary-link class="bg-red-500 hover:bg-red-700 hover:text-white"
+                    href="{{ route('user.houses.responses.decline', compact('house', 'house_response')) }}"
+                    onclick="return confirm('Hiermee wordt de reactie verwijderd. Doorgaan?');">Reactie
+                    afwijzen</x-primary-link>
             </div>
         </div>
 

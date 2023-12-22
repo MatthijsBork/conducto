@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('telephone');
             $table->string('message');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

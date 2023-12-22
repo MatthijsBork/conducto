@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <form method="POST" action="{{ route('user.houses.images.store', compact('house')) }}"
+    <form method="POST" action="{{ route('dashboard.houses.images.store', compact('house')) }}"
         enctype="multipart/form-data">
         @csrf
 

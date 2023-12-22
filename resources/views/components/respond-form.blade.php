@@ -34,6 +34,25 @@
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-4 flex flex-row justify-evenly">
+            <div class="w-1/2">
+                <x-input-label for="start_date">Begindatum</x-input-label>
+                <input type="date" id="start_date" name="start_date" value="{{ old('start_date') }}"
+                    class="w-full mr-1 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
+                @error('start_date')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="w-1/2">
+
+                <x-input-label for="end_date">Einddatum</x-input-label>
+                <input type="date" id="end_date" name="end_date" value="{{ old('end_date') }}"
+                    class="w-full ml-1 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
+                @error('end_date')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
     </div>
 
     <div class="text-right">

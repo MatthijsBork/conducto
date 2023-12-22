@@ -46,7 +46,7 @@
                         <td class="flex justify-end py-3 text-right">
                             <a title="Bewerken" href="{{ route('dashboard.houses.info', compact('house')) }}"
                                 class="text-blue-700 hover:underline">
-                                <x-eye-icon></x-eye-icon>
+                                <x-edit-icon></x-edit-icon>
                             </a>
                             <a title="Verwijderen" href="{{ route('dashboard.houses.delete', compact('house')) }}"
                                 class="text-red-500 hover:underline"

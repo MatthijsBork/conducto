@@ -32,7 +32,7 @@
 
 <body class="p-4 bg-gray-100">
     <div class="py-4 text-left">
-        <h1 class="text-3xl font-bold">Locareo.</h1>
+        <h1 class="text-3xl font-bold">Conducto.</h1>
     </div>
     <div class="flex-row">
         <div class="xl:flex-row">

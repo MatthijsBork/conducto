@@ -62,7 +62,7 @@ class HouseController extends Controller
         $house->user_id = Auth::user()->id;
         $house->save();
 
-        return redirect()->route('dashboard.houses.show', compact('house'))->with('success', 'Huis opgeslagen');
+        return redirect()->route('dashboard.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
     }
 
     public function update(HouseStoreRequest $request, House $house)
@@ -86,13 +86,6 @@ class HouseController extends Controller
         $this->authorize('hasHouse', [House::class, $house]);
 
         return view('dashboard.houses.edit', compact('house'));
-    }
-
-    public function editImages(House $house)
-    {
-        $this->authorize('hasHouse', [House::class, $house]);
-
-        return view('dashboard.houses.editImages');
     }
 
     public function info(House $house)
@@ -119,6 +112,8 @@ class HouseController extends Controller
         $house_response->email = $request->email;
         $house_response->telephone = $request->telephone;
         $house_response->message = $request->message;
+        $house_response->start_date = $request->start_date;
+        $house_response->end_date = $request->end_date;
         $house_response->save();
 
         Mail::to($house->user->email)->send(new SellerMail($house, $request));

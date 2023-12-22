@@ -39,7 +39,7 @@ class UserHouseController extends Controller
         $house->user_id = Auth::user()->id;
         $house->save();
 
-        return redirect()->route('user.houses.show', compact('house'))->with('success', 'Huis opgeslagen');
+        return redirect()->route('user.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
     }
 
     public function update(HouseStoreRequest $request, House $house)
@@ -89,6 +89,6 @@ class UserHouseController extends Controller
         $this->authorize('hasHouse', [House::class, $house]);
         Storage::deleteDirectory('houses/' . $house->id);
         $house->delete();
-        return redirect()->route('user.houses.index')->with('success', 'Huis verwijderd!');
+        return redirect()->route('user.houses')->with('success', 'Huis verwijderd!');
     }
 }

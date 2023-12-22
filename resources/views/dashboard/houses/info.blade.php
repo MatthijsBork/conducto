@@ -6,7 +6,7 @@
     </x-slot>
 
     <x-slot name="buttonSlot">
-        <x-primary-link href="{{ route('user.houses.edit', compact('house')) }}">Informatie bewerken</x-primary-link>
+        <x-primary-link href="{{ route('dashboard.houses.edit', compact('house')) }}">Informatie bewerken</x-primary-link>
     </x-slot>
 
     <x-house-tab-menu :house="$house"></x-house-tab-menu>

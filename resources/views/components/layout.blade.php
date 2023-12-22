@@ -43,7 +43,7 @@
                         <div class="w-full md:w-3/4">
                             <div class="w-full">
                                 <div class="mb-2 flex items-center gap-5 justify-between">
-                                    <div class="flex-shrink-0">
+                                    <div class="flex-shrink-0 py-1">
                                         <h1 class="text-2xl font-semibold">{{ $titleSlot }}</h1>
                                     </div>
                                     @if (isset($searchSlot))

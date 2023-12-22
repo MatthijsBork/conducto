@@ -18,6 +18,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('house')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-4">
                 <x-input-label for="name">Naam</x-input-label>

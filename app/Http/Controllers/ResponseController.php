@@ -18,7 +18,9 @@ class ResponseController extends Controller
     {
         $query = $request->input('query');
 
-        $house_responses = HouseResponse::orderBy('created_at')->paginate(10);
+        $house_responses = HouseResponse::where('name', 'like', "%$query%")
+            ->orWhere('name', 'like', "%$query%")
+            ->orderBy('created_at')->paginate(10);
 
         return view('dashboard.responses.index', compact('house_responses'));
     }
@@ -41,7 +43,7 @@ class ResponseController extends Controller
     {
         $house_response->house_id = $request->house;
         $house_response->user_id = Auth::user()->id ?? null;
-        $house_response->status= $request->status;
+        $house_response->status = $request->status;
         $house_response->name = $request->name;
         $house_response->email = $request->email;
         $house_response->telephone = $request->telephone;

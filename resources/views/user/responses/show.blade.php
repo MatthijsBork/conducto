@@ -11,7 +11,8 @@
                 {{ $house_response->house->address . ', ' . $house_response->house->city }}</h1>
             <div>
                 <x-primary-link class="bg-red-500 hover:bg-red-700 hover:text-white"
-                    href="{{ route('user.responses.delete', compact('house', 'house_response')) }}">Reactie
+                    href="{{ route('user.responses.delete', compact('house', 'house_response')) }}"
+                    onclick="return confirm('Hiermee wordt de reactie verwijderd. Doorgaan?');">Reactie
                     intrekken</x-primary-link>
             </div>
         </div>

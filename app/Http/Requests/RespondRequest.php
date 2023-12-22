@@ -12,6 +12,8 @@ class RespondRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email',
             'message' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ];
     }
 
@@ -21,6 +23,8 @@ class RespondRequest extends FormRequest
             'name.required' => 'Een naam is vereist',
             'message.required' => 'Een bericht is vereist',
             'email.required' => 'Een E-mail is vereist',
+            'start_date.required' => 'Begindatum is vereist',
+            'end_date.required' => 'Einddatum is vereist',
 
             'email.email' => 'E-mail is niet geldig',
         ];

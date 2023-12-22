@@ -33,7 +33,7 @@
                     <tr class="border-b even:bg-gray-50">
                         <td class="px-4 py-3">
                             <a class="hover:underline"
-                                href="{{ route('houses.show', compact('house')) }}">{{ $house->address }}</a>
+                                href="{{ route('user.houses.info', compact('house')) }}">{{ $house->address }}</a>
                         </td>
                         <td class="px-4 py-3">
                             <p>{{ $house->city }}</p>
@@ -45,14 +45,6 @@
                             <a title="Bewerken" href="{{ route('user.houses.info', compact('house')) }}"
                                 class="text-blue-700 hover:underline">
                                 <x-edit-icon></x-edit-icon>
-                            </a>
-                            <a title="Foto's" href="{{ route('user.houses.images', compact('house')) }}"
-                                class="text-blue-700 hover:underline">
-                                <x-img-icon></x-img-icon>
-                            </a>
-                            <a title="Reacties" href="{{ route('user.houses.responses', compact('house')) }}"
-                                class="text-blue-700 hover:underline">
-                                <x-list-icon></x-list-icon>
                             </a>
                             <a title="Verwijderen" href="{{ route('user.houses.delete', compact('house')) }}"
                                 class="text-red-500 hover:underline"

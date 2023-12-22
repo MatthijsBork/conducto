@@ -40,9 +40,18 @@
                             <hr class="my-3">
                             <p>{{ $house->rooms }} kamers</p>
                             <hr class="my-3">
+                            <p>
+                                @if ($house->acceptedResponse() != null)
+                                    <p class="text-red-500">Woning is momenteel bezet tot
+                                        {{ $house->acceptedResponse()->end_date }}</p>
+                                @else
+                                    <p class="text-green-500">Woning is beschikbaar</p>
+                                @endif
+                            </p>
+                            <hr class="my-3">
                             <p class="pt-5 text-xl">
                                 <x-input-label>Beschrijving</x-input-label>
-                                {{ $house->description }}
+                                {!! $house->description !!}
                             </p>
                         </div>
                     </div>

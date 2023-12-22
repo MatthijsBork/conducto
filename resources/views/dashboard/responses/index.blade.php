@@ -20,7 +20,7 @@
         <table class="w-full text-left bg-white table-auto sm:rounded-lg">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-4 py-3">Adres</th>
+                    <th class="px-4 py-3">Naam</th>
                     <th class="px-4 py-3">Huis</th>
                     <th class="px-4 py-3">Telefoonnummer</th>
                     <th class="px-4 py-3">Status</th>

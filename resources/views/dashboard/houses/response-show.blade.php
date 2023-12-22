@@ -10,10 +10,13 @@
             <h1 class="text-xl font-semibold">Reactie op
                 {{ $house_response->house->address . ', ' . $house_response->house->city }}</h1>
             <div>
-                <x-primary-link class="bg-green-600 hover:bg-green-700" href="{{ route('user.houses.responses.accept', compact('house', 'house_response')) }}">Reactie accepteren</x-primary-link>
-                <x-primary-link
-                    class="bg-red-500 hover:bg-red-700 hover:text-white"
-                    href="{{ route('user.houses.responses.decline', compact('house', 'house_response')) }}">Reactie afwijzen</x-primary-link>
+                <x-primary-link class="bg-green-600 hover:bg-green-700"
+                    href="{{ route('user.houses.responses.accept', compact('house', 'house_response')) }}">Reactie
+                    accepteren</x-primary-link>
+                <x-primary-link class="bg-red-500 hover:bg-red-700 hover:text-white"
+                    href="{{ route('user.houses.responses.decline', compact('house', 'house_response')) }}"
+                    onclick="return confirm('Hiermee wordt de reactie verwijderd. Doorgaan?');">Reactie
+                    afwijzen</x-primary-link>
             </div>
         </div>
 

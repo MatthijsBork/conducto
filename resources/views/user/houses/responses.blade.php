@@ -5,14 +5,13 @@
 
     <x-slot name="titleSlot">{{ $house->address . ', ' . $house->city }}</x-slot>
 
+    <x-house-tab-menu :house="$house"></x-house-tab-menu>
     @if (!isset($responses[0]))
         <div class="w-full p-10 text-center bg-white rounded-lg">
             <h1 class="text-xl font-bold text-blue-500">Veel leegte...</h1>
-            <p class="mb-4">Er zijn geen woningen gevonden</p>
+            <p class="mb-4">Er zijn geen reacties gevonden</p>
         </div>
     @else
-        <x-house-tab-menu :house="$house"></x-house-tab-menu>
-
         <table class="w-full text-left bg-white table-auto sm:rounded-lg">
             <thead class="bg-gray-50">
                 <tr>
