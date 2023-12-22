@@ -21,34 +21,34 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3">Adres</th>
-                    <th class="px-4 py-3">Stad</th>
-                    <th class="px-4 py-3">Huurprijs</th>
-                    <th class="px-4 py-3">Kamers</th>
+                    <th class="px-4 py-3">Huis</th>
+                    <th class="px-4 py-3">Telefoonnummer</th>
+                    <th class="px-4 py-3">Status</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($house_responses as $house_responses)
+                @foreach ($house_responses as $house_response)
                     <tr class="border-b even:bg-gray-50">
                         <td class="px-4 py-3">
                             <a class="hover:underline"
-                                href="{{ route('dashboard.houses.info', compact('house')) }}">{{ $house_responses->address }}</a>
+                                href="{{ route('dashboard.responses.edit', compact('house_response')) }}">{{ $house_response->name }}</a>
                         </td>
                         <td class="px-4 py-3">
-                            <p>{{ $house_responses->city }}</p>
+                            <p>{{ $house_response->house->address . ', ' . $house_response->house->city }}</p>
                         </td>
                         <td class="px-4 py-3">
-                            <p>€{{ $house_responses->rent }}</p>
+                            <p>{{ $house_response->telephone }}</p>
                         </td>
                         <td class="px-4 py-3">
-                            <p>{{ $house_responses->rooms }}</p>
+                            <p>{{ $house_response->status == 1 ? 'Geaccepteerd' : 'Open' }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
-                            <a title="Bewerken" href="{{ route('dashboard.houses.info', compact('house')) }}"
+                            <a title="Bewerken" href="{{ route('dashboard.responses.edit', compact('house_response')) }}"
                                 class="text-blue-700 hover:underline">
-                                <x-eye-icon></x-eye-icon>
+                                <x-edit-icon></x-edit-icon>
                             </a>
-                            <a title="Verwijderen" href="{{ route('dashboard.houses.delete', compact('house')) }}"
+                            <a title="Verwijderen" href="{{ route('dashboard.responses.delete', compact('house_response')) }}"
                                 class="text-red-500 hover:underline"
                                 onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?');">
                                 <x-trash-icon></x-trash-icon>

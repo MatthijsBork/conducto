@@ -19,7 +19,7 @@
         <div class="flex md:flex-row w-full flex-col-reverse justify-between">
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                @foreach ($houseImages as $index => $image)
+                @foreach ($house_images as $index => $image)
                     <div class="relative group cursor-pointer">
                         <img src="{{ asset('images/houses/' . $house->id . '/' . $image->img) }}"
                             alt="Image {{ $index }}"

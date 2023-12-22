@@ -1,8 +1,4 @@
-<x-layout>
-    <x-slot name="menuSlot">
-        <x-user-menu></x-user-menu>
-    </x-slot>
-
+<x-dashboard-layout>
     <x-slot name="titleSlot">{{ $house->address . ', ' . $house->city }}</x-slot>
 
     @if (!isset($responses[0]))
@@ -50,4 +46,4 @@
             {{ $responses->links() }}
         </div>
     @endif
-</x-layout>
+</x-dashboard-layout>

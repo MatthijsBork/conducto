@@ -19,6 +19,7 @@
                     <th class="px-4 py-3">Naam</th>
                     <th class="px-4 py-3">E-mail</th>
                     <th class="px-4 py-3">Telefoonnummer</th>
+                    <th class="px-4 py-3">Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -34,6 +35,9 @@
                         </td>
                         <td class="px-4 py-3">
                             <a>{{ $house_response->telephone }}</a>
+                        </td>
+                        <td class="px-4 py-3">
+                            <a>{{ $house_response->status == 1 ? 'Geaccepteerd' : 'Open' }}</a>
                         </td>
                         <td class="flex justify-end py-3 text-right">
                             <a title="Informatie"

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HouseController;
+use App\Http\Controllers\HouseImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\UserHouseController;
@@ -113,16 +114,24 @@ Route::middleware('auth')->group(function () {
                 Route::get('delete', [HouseController::class, 'delete'])->name('.delete');
 
                 Route::prefix('images')->name('.images')->group(function () {
-                    Route::get('', [UserHouseImageController::class, 'show']);
-                    Route::get('edit', [UserHouseImageController::class, 'show'])->name('.edit');
+                    Route::get('', [HouseImageController::class, 'show']);
+                    Route::get('edit', [HouseImageController::class, 'edit'])->name('.edit');
+                    Route::post('store', [HouseImageController::class, 'store'])->name('.store');
+                    Route::get('{image}/delete', [HouseImageController::class, 'delete'])->name('.delete');
                 });
             });
         });
 
         // RESPONSES
         Route::prefix('responses')->name('.responses')->group(function () {
-            Route::get('', [ResponseController::class, 'dashboard']);
+            Route::get('', [ResponseController::class, 'index']);
             Route::get('create', [ResponseController::class, 'create'])->name('.create');
+            Route::post('store', [ResponseController::class, 'store'])->name('.store');
+            Route::prefix('{house_response}')->group(function () {
+                Route::get('edit', [ResponseController::class, 'edit'])->name('.edit');
+                Route::post('update', [ResponseController::class, 'update'])->name('.update');
+                Route::get('delete', [ResponseController::class, 'delete'])->name('.delete');
+            });
         });
 
         // USERS

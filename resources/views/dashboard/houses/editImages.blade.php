@@ -1,9 +1,5 @@
-<x-layout>
+<x-dashboard-layout>
     @csrf
-
-    <x-slot name="menuSlot">
-        <x-user-menu></x-user-menu>
-    </x-slot>
 
     <x-slot name="titleSlot">
         <p>{{ $house->address . ', ' . $house->city }}</p>
@@ -15,7 +11,7 @@
         <div class="flex md:flex-row w-full flex-col-reverse justify-between">
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                @foreach ($houseImages as $index => $image)
+                @foreach ($house_images as $index => $image)
                     <div class="relative group cursor-pointer">
                         <a class="hover:underline text-red-500"
                             onclick="return confirm('Weet u zeker dat u dit wilt verwijderen?');"
@@ -43,8 +39,8 @@
         @enderror
         <div class="text-right">
             <a class="text-red-500 hover:underline mr-4"
-                href="{{ route('user.houses.images', compact('house')) }}">Annuleren</a>
+                href="{{ route('dashboard.houses.images', compact('house')) }}">Annuleren</a>
             <x-primary-button type="submit">Opslaan</x-primary-button>
         </div>
     </form>
-</x-layout>
+</x-dashboard-layout>

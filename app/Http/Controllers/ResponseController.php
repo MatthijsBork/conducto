@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Mail\SellerMail;
 use App\Models\Response;
+use App\Mail\ResponderMail;
 use Illuminate\Http\Request;
 use App\Models\HouseResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\RespondRequest;
 
 class ResponseController extends Controller
 {
-    public function dashboard(Request $request)
+    public function index(Request $request)
     {
         $query = $request->input('query');
 
-        $responses = HouseResponse::where('name', 'like', "%$query%")->orderBy('created_at')->paginate(10);
-        return view('dashboard.responses.index', compact('responses'));
+        $house_responses = HouseResponse::orderBy('created_at')->paginate(10);
+
+        return view('dashboard.responses.index', compact('house_responses'));
     }
 
     public function create()
@@ -23,6 +28,41 @@ class ResponseController extends Controller
         $houses = House::all();
 
         return view('dashboard.responses.create', compact('houses'));
+    }
+
+    public function edit(Request $request, HouseResponse $house_response)
+    {
+        $houses = House::all();
+
+        return view('dashboard.responses.edit', compact('house_response', 'houses'));
+    }
+
+    public function update(Request $request, HouseResponse $house_response)
+    {
+        $house_response->house_id = $request->house;
+        $house_response->user_id = Auth::user()->id ?? null;
+        $house_response->status= $request->status;
+        $house_response->name = $request->name;
+        $house_response->email = $request->email;
+        $house_response->telephone = $request->telephone;
+        $house_response->message = $request->message;
+        $house_response->save();
+
+        return redirect()->route('dashboard.responses')->with('success', 'Reactie bijgewerkt');
+    }
+
+    public function store(RespondRequest $request)
+    {
+        $house_response = new HouseResponse();
+        $house_response->house_id = $request->house;
+        $house_response->user_id = Auth::user()->id ?? null;
+        $house_response->name = $request->name;
+        $house_response->email = $request->email;
+        $house_response->telephone = $request->telephone;
+        $house_response->message = $request->message;
+        $house_response->save();
+
+        return redirect()->route('dashboard.responses')->with('success', 'Reactie verstuurd! Er is een bevestiging naar je inbox gestuurd');
     }
 
     public function houseIndex(Request $request, House $house)
@@ -49,13 +89,11 @@ class ResponseController extends Controller
         return view('user.houses.response-show', compact('house', 'house_response'));
     }
 
-    public function delete(Request $request, House $house, HouseResponse $house_response)
+    public function delete(Request $request, HouseResponse $house_response)
     {
-        $this->authorize('hasResponse', [HouseResponse::class, $house_response]);
-
         $house_response->delete();
 
-        return redirect()->route('user.responses')->with('success', 'Reactie verwijderd!');
+        return redirect()->route('dashboard.responses')->with('success', 'Reactie verwijderd!');
     }
 
     public function accept(Request $request, House $house, HouseResponse $house_response)

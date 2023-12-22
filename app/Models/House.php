@@ -23,4 +23,9 @@ class House extends Model
     {
         return $this->hasMany(HouseResponse::class);
     }
+
+    public function available()
+    {
+        return $this->responses()->where('status', 1)->exists();
+    }
 }

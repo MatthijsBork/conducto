@@ -12,14 +12,14 @@ class UserHouseImageController extends Controller
 {
     public function show(Request $request, House $house)
     {
-        $houseImages = $house->images;
-        return view('user.houses.images', compact('house', 'houseImages'));
+        $house_images = $house->images;
+        return view('user.houses.images', compact('house', 'house_images'));
     }
 
     public function edit(Request $request, House $house)
     {
-        $houseImages = $house->images;
-        return view('user.houses.editImages', compact('house', 'houseImages'));
+        $house_images = $house->images;
+        return view('user.houses.editImages', compact('house', 'house_images'));
     }
 
     public function store(HouseImageStoreRequest $request, House $house)

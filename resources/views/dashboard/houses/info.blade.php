@@ -1,12 +1,8 @@
-<x-layout>
+<x-dashboard-layout>
     @csrf
 
     <x-slot name="titleSlot">
         <p>{{ $house->address . ', ' . $house->city }}</p>
-    </x-slot>
-
-    <x-slot name="menuSlot">
-        <x-user-menu></x-user-menu>
     </x-slot>
 
     <x-slot name="buttonSlot">
@@ -45,4 +41,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</x-dashboard-layout>
