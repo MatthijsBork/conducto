@@ -17,6 +17,7 @@ class HousePolicy
 
     public function hasHouse(User $user, House $house)
     {
-        return $house->user->id == $user->id;
+        // dd($house);
+        return $house->user->id == $user->id || $user->is_admin == 1;
     }
 }

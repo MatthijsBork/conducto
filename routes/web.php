@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
 
                 // HOUSE IMAGES
                 Route::prefix('images')->name('.images')->group(function () {
-                    Route::get('', [UserHouseImageController::class, 'show']);
+                    Route::get('', [UserHouseImageController::class, 'show']); // Aiden: Ik zou er nog een name achter zetten, zodat je er makkelijker naar kan verwijzen
                     Route::get('edit', [UserHouseImageController::class, 'edit'])->name('.edit');
                     Route::post('store', [UserHouseImageController::class, 'store'])->name('.store');
                     Route::get('{image}/delete', [UserHouseImageController::class, 'delete'])->name('.delete');

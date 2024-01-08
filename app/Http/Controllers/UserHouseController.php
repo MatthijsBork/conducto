@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\HouseStoreRequest;
+use App\Http\Requests\HouseUpdateRequest;
 
 class UserHouseController extends Controller
 {
@@ -42,10 +43,15 @@ class UserHouseController extends Controller
         return redirect()->route('user.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
     }
 
-    public function update(HouseStoreRequest $request, House $house)
+    public function edit(House $house)
     {
-        $this->authorize('hasHouse', [House::class, $house]);
+        $this->authorize('hasHouse', $house);
 
+        return view('user.houses.edit', compact('house'));
+    }
+
+    public function update(HouseUpdateRequest $request, House $house)
+    {
         $house->address = $request->address;
         $house->postal_code = $request->postal_code;
         $house->city = $request->city;
@@ -58,16 +64,9 @@ class UserHouseController extends Controller
         return redirect()->route('user.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
     }
 
-    public function edit(House $house)
-    {
-        $this->authorize('hasHouse', [House::class, $house]);
-
-        return view('user.houses.edit', compact('house'));
-    }
-
     public function editImages(House $house)
     {
-        $this->authorize('hasHouse', [House::class, $house]);
+        $this->authorize('hasHouse', $house);
 
         return view('user.houses.editImages');
     }
@@ -79,14 +78,14 @@ class UserHouseController extends Controller
 
     public function info(House $house)
     {
-        $this->authorize('hasHouse', [House::class, $house]);
+        $this->authorize('hasHouse', $house);
 
         return view('user.houses.info', compact('house'));
     }
 
     public function delete(House $house)
     {
-        $this->authorize('hasHouse', [House::class, $house]);
+        $this->authorize('hasHouse', $house);
         Storage::deleteDirectory('houses/' . $house->id);
         $house->delete();
         return redirect()->route('user.houses')->with('success', 'Huis verwijderd!');

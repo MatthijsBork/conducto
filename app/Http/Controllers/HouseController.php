@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RespondRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\HouseStoreRequest;
+use App\Http\Requests\HouseUpdateRequest;
 
 class HouseController extends Controller
 {
@@ -60,15 +61,14 @@ class HouseController extends Controller
         $house->rent = $request->rent;
         $house->description = $request->description;
         $house->user_id = Auth::user()->id;
+        // $house->user_id = Auth::id(); -> Dit is net iets korter
         $house->save();
 
         return redirect()->route('dashboard.houses.info', compact('house'))->with('success', 'Huis opgeslagen');
     }
 
-    public function update(HouseStoreRequest $request, House $house)
+    public function update(HouseUpdateRequest $request, House $house)
     {
-        $this->authorize('hasHouse', [House::class, $house]);
-
         $house->address = $request->address;
         $house->postal_code = $request->postal_code;
         $house->city = $request->city;
@@ -100,7 +100,7 @@ class HouseController extends Controller
         $this->authorize('hasHouse', [House::class, $house]);
         Storage::deleteDirectory('houses/' . $house->id);
         $house->delete();
-        return redirect()->route('dashboard.houses.index')->with('success', 'Huis verwijderd!');
+        return redirect()->route('dashboard.houses')->with('success', 'Huis verwijderd!');
     }
 
     public function postResponse(RespondRequest $request, House $house)
@@ -124,8 +124,6 @@ class HouseController extends Controller
         $house_response = new House;
 
         sleep(1);
-
-
 
         return redirect()->route('houses.show', compact('house'))->with('success', 'Reactie verstuurd! Er is een bevestiging naar je inbox gestuurd');
     }

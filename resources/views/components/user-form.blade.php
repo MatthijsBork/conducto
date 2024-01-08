@@ -53,7 +53,7 @@
         <div class="mb-4">
             <x-input-label for="admin">Admin</x-input-label>
             <input type="checkbox" id="admin" name="admin" value="1"
-                class="rounded-lg"{{ (old('admin') ?? $user->is_admin == 1) ? 'checked' : '' }}>
+                class="rounded-lg"{{ $user->is_admin ?? null == 1 ?? old('admin') ? 'checked' : '' }}>
             @error('admin')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror

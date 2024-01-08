@@ -37,10 +37,8 @@
     <div class="flex-row">
         <div class="xl:flex-row">
             <div class="container p-6 mx-auto mt-4 bg-white rounded-lg shadow-md">
-                <h2 class="mb-4 text-2xl font-semibold">Uw reactie op een woning</h2>
-                <p class="mb-4">U heeft gereageerd op een woning</p>
-                <p class="mb-2"><b>Reageerder: </b>{{ $data->name }}</p>
-                <p class="mb-4"><b>Reageerder E-mail: </b>{{ $data->email }}</p>
+                <h2 class="mb-4 text-2xl font-semibold">Uw reactie op een woning is geweigerd</h2>
+                <p class="mb-4">Uw reactie is geweigerd</p>
 
                 <div class="flex flex-row mt-5">
                     <div class="my-1 mr-2">

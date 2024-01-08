@@ -2,10 +2,17 @@
 
 namespace App\Http\Requests;
 
+use App\Models\House;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class HouseStoreRequest extends FormRequest
+class HouseUpdateRequest extends FormRequest
 {
+    public function authorize(): bool
+    {
+        dd(Auth::user()->can('hasHouse', [House::class, $this->route('house')]));
+    }
+
     public function rules()
     {
         return [
@@ -13,7 +20,7 @@ class HouseStoreRequest extends FormRequest
             'postal_code' => 'required|string',
             'city' => 'required|string',
             'rooms' => 'required|integer',
-            'rent' => 'required|decimal:0,2',
+            'rent' => 'required|numeric',
             'description' => 'required',
         ];
     }
@@ -22,7 +29,7 @@ class HouseStoreRequest extends FormRequest
     {
         return [
             'address.required' => 'Een adres is vereist',
-            // meer messages
+
         ];
     }
 }

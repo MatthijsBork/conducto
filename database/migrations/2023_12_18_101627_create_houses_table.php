@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('rooms');
             $table->longText('description');
-            $table->string('rent');
+            $table->decimal('rent');
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
